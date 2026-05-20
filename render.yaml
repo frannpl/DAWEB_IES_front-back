@@ -1,0 +1,60 @@
+databases:
+  - name: instituto-db
+    plan: free
+    databaseName: instituto
+    user: alumno
+
+services:
+  - type: web
+    name: instituto-backend
+    plan: free
+    runtime: docker
+    dockerContext: ./daweb_ies-master
+    dockerfilePath: ./daweb_ies-master/Dockerfile
+    envVars:
+      - key: SPRING_PROFILES_ACTIVE
+        value: pro
+      - key: SPRING_DATASOURCE_URL
+        value: jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_DATABASE}
+      - key: DB_HOST
+        fromDatabase:
+          name: instituto-db
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: instituto-db
+          property: port
+      - key: DB_DATABASE
+        fromDatabase:
+          name: instituto-db
+          property: database
+      - key: SPRING_DATASOURCE_USERNAME
+        fromDatabase:
+          name: instituto-db
+          property: user
+      - key: SPRING_DATASOURCE_PASSWORD
+        fromDatabase:
+          name: instituto-db
+          property: password
+
+  - type: web
+    name: instituto-frontend
+    plan: free
+    runtime: docker
+    dockerContext: ./frontend-ies-master
+    dockerfilePath: ./frontend-ies-master/Dockerfile
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: BACKEND_URL
+        value: http://${BACKEND_HOST}:${BACKEND_PORT}
+      - key: BACKEND_HOST
+        fromService:
+          name: instituto-backend
+          type: web
+          property: host
+      - key: BACKEND_PORT
+        fromService:
+          name: instituto-backend
+          type: web
+          property: port

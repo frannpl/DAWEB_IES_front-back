@@ -1,0 +1,86 @@
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+.detalle-card {
+  background: white;
+  border-radius: 24px;
+  padding: 2.5rem;
+  width: 90%;
+  max-width: 500px;
+  position: relative;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  animation: scaleUp 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes scaleUp { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+.close-btn {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: #f1f5f9;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #64748b;
+  transition: all 0.2s;
+}
+
+.close-btn:hover { background: #f43f5e; color: white; transform: rotate(90deg); }
+
+.prof-avatar {
+  background: linear-gradient(135deg, #10b981, #059669) !important; 
+}
+
+.avatar {
+  width: 60px;
+  height: 60px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  font-weight: 800;
+  font-size: 1.25rem;
+}
+
+.header-info h3 { margin: 0; font-size: 1.25rem; font-weight: 800; }
+
+.prof-badge { color: #059669 !important; background: #ecfdf5 !important; }
+
+.status-badge { font-size: 0.7rem; font-weight: 700; padding: 0.2rem 0.6rem; border-radius: 6px; text-transform: uppercase; }
+
+.detalle-body { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem; }
+
+.info-group label { display: block; font-size: 0.65rem; font-weight: 800; color: #94a3b8; text-transform: uppercase; margin-bottom: 0.25rem; }
+
+.value { font-size: 0.95rem; font-weight: 700; color: #1e293b; }
+
+.value.highlight { color: #10b981; }
+
+.detalle-footer { display: flex; justify-content: center; }
+
+.detalle-footer .btn-primary { width: 100%; padding: 0.75rem; background-color: #10b981; }
+
+

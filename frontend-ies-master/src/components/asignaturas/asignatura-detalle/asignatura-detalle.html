@@ -1,0 +1,71 @@
+@if (asignatura) {
+  <div class="modal-overlay" (click)="onCerrar()">
+    <div class="detalle-card" (click)="$event.stopPropagation()">
+      <button class="close-btn" (click)="onCerrar()">×</button>
+  
+      <div class="detalle-header">
+        <div class="avatar asig-avatar">{{ asignatura.nombre.charAt(0) }}</div>
+        <div class="header-info">
+          <h3>{{ asignatura.nombre }}</h3>
+          <span class="status-badge asig-badge">Oferta Educativa</span>
+        </div>
+      </div>
+  
+      <div class="detalle-body">
+        <div class="info-group">
+          <label>ID Asignatura</label>
+          <div class="value">#{{ asignatura.id }}</div>
+        </div>
+        <div class="info-group">
+          <label>Nombre</label>
+          <div class="value">{{ asignatura.nombre }}</div>
+        </div>
+        <div class="info-group">
+          <label>Horas Totales</label>
+          <div class="value">{{ asignatura.horas }} h/semana</div>
+        </div>
+        <div class="info-group">
+          <label>Código Interno</label>
+          <div class="value highlight">ASIG-{{ asignatura.id }}00</div>
+        </div>
+      </div>
+  
+      <!-- Sección de Alumnos Matriculados -->
+      <div class="alumnos-section" style="margin-top: 1.5rem; border-top: 1px solid #e2e8f0; padding-top: 1.5rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+          <h4 style="margin: 0; font-size: 1rem; color: #1e293b; font-weight: 700;">Alumnos Matriculados</h4>
+          <button (click)="verAlumnos()" style="background: none; border: none; color: #f59e0b; font-weight: 700; cursor: pointer; font-size: 0.85rem;">
+            {{ mostrarAlumnos ? 'Ocultar' : 'Ver Alumnos' }}
+          </button>
+        </div>
+
+        @if (mostrarAlumnos) {
+          @if (alumnosMatriculados.length === 0) {
+            <p style="color: #64748b; font-size: 0.875rem; font-style: italic; margin: 0; padding: 0.5rem 0;">
+              No hay alumnos matriculados en esta asignatura.
+            </p>
+          } @else {
+            <ul style="list-style: none; padding: 0; margin: 0; max-height: 200px; overflow-y: auto;">
+              @for (alumno of alumnosMatriculados; track alumno.id) {
+                <li style="display: flex; align-items: center; padding: 0.6rem 0; border-bottom: 1px solid #f1f5f9;">
+                  <div class="avatar-mini" style="width: 32px; height: 32px; border-radius: 50%; background: #fffbeb; color: #d97706; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.75rem; margin-right: 0.75rem; border: 1px solid #fef3c7;">
+                    {{ alumno.nombre.charAt(0) }}{{ alumno.apellidos.charAt(0) }}
+                  </div>
+                  <div>
+                    <div style="font-size: 0.875rem; font-weight: 700; color: #1e293b;">{{ alumno.nombre }} {{ alumno.apellidos }}</div>
+                    <div style="font-size: 0.75rem; color: #64748b;">iPasen: {{ alumno.ipasen }}</div>
+                  </div>
+                </li>
+              }
+            </ul>
+          }
+        }
+      </div>
+
+      <div class="detalle-footer">
+        <button class="btn-primary" (click)="onCerrar()">Cerrar Detalles</button>
+      </div>
+    </div>
+  </div>
+}
+

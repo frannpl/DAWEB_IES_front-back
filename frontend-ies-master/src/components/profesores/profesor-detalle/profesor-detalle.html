@@ -1,0 +1,41 @@
+@if (profesor) {
+  <div class="modal-overlay" (click)="onCerrar()">
+    <div class="detalle-card" (click)="$event.stopPropagation()">
+      <button class="close-btn" (click)="onCerrar()">×</button>
+
+      <div class="detalle-header">
+        <div class="avatar prof-avatar">{{ profesor.nombre.charAt(0) }}{{ profesor.apellidos.charAt(0) }}</div>
+        <div class="header-info">
+          <h3>{{ profesor.nombre }} {{ profesor.apellidos }}</h3>
+          <span class="status-badge prof-badge">Cuerpo Docente</span>
+        </div>
+      </div>
+
+      <div class="detalle-body">
+        <div class="info-group">
+          <label>ID Profesor</label>
+          <div class="value">#{{ profesor.id }}</div>
+        </div>
+        <div class="info-group">
+          <label>Nombre</label>
+          <div class="value">{{ profesor.nombre }}</div>
+        </div>
+        <div class="info-group">
+          <label>Apellidos</label>
+          <div class="value">{{ profesor.apellidos }}</div>
+        </div>
+        <div class="info-group">
+          <label>Especialidad</label>
+          <div class="value highlight">{{ profesor.especialidad }}</div>
+        </div>
+      </div>
+
+      <div class="detalle-footer">
+        <button class="btn-primary" (click)="onCerrar()">Cerrar Ficha</button>
+      </div>
+    </div>
+  </div>
+}
+
+
+

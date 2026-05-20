@@ -1,0 +1,44 @@
+
+@if (alumno) {
+  <div class="modal-overlay" (click)="onCerrar()">
+    
+    <div class="detalle-card" (click)="$event.stopPropagation()">
+      
+      <button class="close-btn" (click)="onCerrar()">×</button>
+  
+      <div class="detalle-header">
+        <div class="avatar">{{ alumno.nombre.charAt(0) }}{{ alumno.apellidos.charAt(0) }}</div>
+        <div class="header-info">
+          <h3>{{ alumno.nombre }} {{ alumno.apellidos }}</h3>
+          <span class="status-badge">Ficha del Estudiante</span>
+        </div>
+      </div>
+  
+      <div class="detalle-body">
+        <div class="info-group">
+          <label>ID Estudiante</label>
+          <div class="value">#{{ alumno.id }}</div>
+        </div>
+        <div class="info-group">
+          <label>Nombre</label>
+          <div class="value">{{ alumno.nombre }}</div>
+        </div>
+        <div class="info-group">
+          <label>Apellidos</label>
+          <div class="value">{{ alumno.apellidos }}</div>
+        </div>
+        <div class="info-group">
+          <label>Usuario iPasen</label>
+          <div class="value highlight">{{ alumno.ipasen }}</div>
+        </div>
+      </div>
+  
+      <div class="detalle-footer">
+        <button class="btn-primary" (click)="onCerrar()">Cerrar Ficha</button>
+      </div>
+    </div>
+  </div>
+}
+
+
+

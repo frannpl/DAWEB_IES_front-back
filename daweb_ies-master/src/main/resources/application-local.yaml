@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/instituto
+    username: postgres
+    password: root
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update   # create | update | validate | none
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: false
+    open-in-view: false

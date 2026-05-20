@@ -1,0 +1,68 @@
+@if (matricula) {
+  <div class="modal-overlay" (click)="onCerrar()">
+    <div class="detalle-card" (click)="$event.stopPropagation()">
+      <button class="close-btn" (click)="onCerrar()">×</button>
+  
+      <div class="detalle-header">
+        <div class="avatar mat-avatar">M</div>
+        <div class="header-info">
+          <h3>Matrícula #{{ matricula.idMat }}</h3>
+          <span class="status-badge mat-badge">Expediente Académico</span>
+        </div>
+      </div>
+  
+      <div class="detalle-body">
+        
+        
+        <div style="grid-column: span 2; border-bottom: 1px solid #f1f5f9; padding-bottom: 5px; margin-top: 10px;">
+          <b style="color: #6366f1; font-size: 0.75rem; text-transform: uppercase;">Información del Alumno</b>
+        </div>
+        <div class="info-group">
+          <label>Nombre y Apellidos</label>
+          <div class="value">{{ matricula.alumno.nombre }} {{ matricula.alumno.apellidos }}</div>
+        </div>
+        <div class="info-group">
+          <label>Usuario iPasen</label>
+          <div class="value">{{ matricula.alumno.ipasen }}</div>
+        </div>
+
+        
+        <div style="grid-column: span 2; border-bottom: 1px solid #f1f5f9; padding-bottom: 5px; margin-top: 10px;">
+          <b style="color: #6366f1; font-size: 0.75rem; text-transform: uppercase;">Detalles de la Asignatura</b>
+        </div>
+        <div class="info-group">
+          <label>Nombre</label>
+          <div class="value">{{ matricula.asignatura.nombre }}</div>
+        </div>
+        <div class="info-group">
+          <label>Horas Totales</label>
+          <div class="value">{{ matricula.asignatura.horas }} h/semana</div>
+        </div>
+
+        
+        <div style="grid-column: span 2; border-bottom: 1px solid #f1f5f9; padding-bottom: 5px; margin-top: 10px;">
+          <b style="color: #6366f1; font-size: 0.75rem; text-transform: uppercase;">Datos de Matriculación</b>
+        </div>
+        <div class="info-group">
+          <label>Año del Curso</label>
+          <div class="value">{{ matricula.curso }}º de ESO/Bach.</div>
+        </div>
+        <div class="info-group">
+          <label>Nota Media</label>
+          <div class="value highlight" [style.color]="matricula.notaMedia >= 5 ? '#8b5cf6' : '#f43f5e'">
+              {{ matricula.notaMedia }}
+          </div>
+        </div>
+
+      </div>
+  
+      <div class="detalle-footer">
+        <button class="btn-primary mat-btn" (click)="onCerrar()">Cerrar Expediente</button>
+      </div>
+    </div>
+  </div>
+}
+
+
+
+

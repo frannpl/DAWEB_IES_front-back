@@ -1,0 +1,43 @@
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: postgres_db
+    restart: always
+    environment:
+      - POSTGRES_DB=instituto
+      - POSTGRES_USER=alumno
+      - POSTGRES_PASSWORD=pass
+    ports:
+      - "5433:5432" # He puesto 5433 para que no choque si ya tienes un Postgres instalado fuera de Docker
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./daweb_ies-master/src/main/resources/static/script.sql:/docker-entrypoint-initdb.d/init.sql
+
+  backend:
+    build:
+      context: ./daweb_ies-master
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    environment:
+      - SPRING_PROFILES_ACTIVE=pro
+      # Sobrescribimos la conexión de Render por la de nuestro contenedor 'db'
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/instituto
+      - SPRING_DATASOURCE_USERNAME=alumno
+      - SPRING_DATASOURCE_PASSWORD=pass
+    restart: always
+
+  frontend:
+    build:
+      context: ./frontend-ies-master
+    ports:
+      - "4200:4000"
+    depends_on:
+      - backend
+    environment:
+      - NODE_ENV=production
+    restart: always
+
+volumes:
+  postgres_data:

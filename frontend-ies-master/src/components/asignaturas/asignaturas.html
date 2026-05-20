@@ -1,0 +1,50 @@
+<div class="main-container">
+  <div style="display: flex; justify-content: space-between; align-items: flex-end;">
+    <div>
+      <h2 style="margin-bottom: 0.5rem;">Listado de Asignaturas</h2>
+      <p style="color: var(--text-muted); margin-bottom: 2rem; font-weight: 500;">
+        Plan de estudios, carga horaria y profesores responsables.
+      </p>
+    </div>
+    <button style="margin-bottom: 2rem; background: #f59e0b; color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 12px; font-weight: 700; cursor: pointer; box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);">
+      + Nueva Asignatura
+    </button>
+  </div>
+
+  <div class="table-card">
+    <table class="modern-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre de la Asignatura</th>
+          <th>Carga Horaria</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (a of asignaturas; track a.id) {
+          <tr (click)="seleccionar(a)" style="cursor: pointer;">
+            <td class="id-tag">#{{ a.id }}</td>
+            <td>
+              <div style="font-weight: 700; color: var(--text-main);">{{ a.nombre }}</div>
+              <div style="font-size: 0.85rem; color: var(--text-muted);">Código Interno: ASIG-{{ a.id }}</div>
+            </td>
+            <td>
+              <span class="badge-pill" style="background: #fffbeb; color: #d97706; border-color: #fef3c7;">{{ a.horas }} horas/semana</span>
+            </td>
+            <td>
+              <button (click)="verAlumnos(a, $event)" class="badge-pill" style="background: #fffbeb; color: #d97706; border: 1px solid #fef3c7; cursor: pointer; transition: all 0.2s;" title="Mostrar Alumnos">
+                Ver Alumnos
+              </button>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+
+  <app-asignatura-detalle 
+    [asignatura]="asignaturaSeleccionada" 
+    [cargarAlumnos]="cargarAlumnosInmediatamente"
+    (cerrar)="asignaturaSeleccionada = null">
+  </app-asignatura-detalle>
+</div>

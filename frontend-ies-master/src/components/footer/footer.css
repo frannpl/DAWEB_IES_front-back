@@ -1,0 +1,36 @@
+.footer {
+  background-color: #0f172a;
+  color: #94a3b8;
+  padding: 2rem 4rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+  margin-top: 4rem;
+}
+
+.footer-links {
+  display: flex;
+  gap: 2rem;
+}
+
+.footer-links a {
+  color: #94a3b8;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-links a:hover {
+  color: #6366f1;
+}
+
+.copyright {
+  font-weight: 500;
+}
+
+.brand-dot {
+  color: #6366f1;
+  font-weight: 800;
+}
+

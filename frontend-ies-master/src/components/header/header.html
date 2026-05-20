@@ -1,0 +1,18 @@
+<header class="header">
+  <div class="logo" routerLink="/inicio">IES Gestión</div>
+  <nav class="nav">
+    <a routerLink="/inicio" routerLinkActive="active">Inicio</a>
+    <a routerLink="/alumnos" routerLinkActive="active">Alumnos</a>
+    <a routerLink="/profesores" routerLinkActive="active">Profesores</a>
+    <a routerLink="/asignaturas" routerLinkActive="active">Asignaturas</a>
+    <a routerLink="/matriculas" routerLinkActive="active">Matrículas</a>
+  </nav>
+  <div class="user">
+    <div class="user-info">
+      <span class="user-name">Admin</span>
+      <span class="user-role">Superusuario</span>
+    </div>
+    <button class="logout-btn" (click)="logout()">Salir</button>
+  </div>
+</header>
+

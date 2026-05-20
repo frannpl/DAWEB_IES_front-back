@@ -1,0 +1,55 @@
+<div class="main-container">
+  <div style="display: flex; justify-content: space-between; align-items: flex-end;">
+    <div>
+      <h2 style="margin-bottom: 0.5rem;">Control de Matrículas</h2>
+      <p style="color: var(--text-muted); margin-bottom: 2rem; font-weight: 500;">
+        Registro de expedientes, cursos y calificaciones finales.
+      </p>
+    </div>
+    <button style="margin-bottom: 2rem; background: #8b5cf6; color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 12px; font-weight: 700; cursor: pointer; box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);">
+      + Nueva Matrícula
+    </button>
+  </div>
+
+  <div class="table-card">
+    <table class="modern-table">
+      <thead>
+        <tr>
+          <th>ID MAT.</th>
+          <th>ALUMNO</th>
+          <th>ASIGNATURA</th>
+          <th>CURSO</th>
+          <th>NOTA MEDIA</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (m of matriculas; track m.idMat) {
+          <tr (click)="seleccionar(m)" style="cursor: pointer;">
+            <td class="id-tag">#{{ m.idMat }}</td>
+            <td>
+              <div style="font-weight: 700;">{{ m.alumno.nombre }}</div>
+              <div style="font-size: 0.75rem; color: var(--text-muted);">ID: {{ m.alumno.id }}</div>
+            </td>
+            <td>
+              <div style="font-weight: 700;">{{ m.asignatura.nombre }}</div>
+              <div style="font-size: 0.75rem; color: var(--text-muted);">ID: {{ m.asignatura.id }}</div>
+            </td>
+            <td><div style="font-weight: 700;">{{ m.curso }}º Curso</div></td>
+            <td>
+              <div [style.color]="m.notaMedia >= 5 ? '#8b5cf6' : '#f43f5e'" style="font-weight: 800; font-size: 1.1rem;">
+                  {{ m.notaMedia }}
+              </div>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+
+  <app-matricula-detalle 
+    [matricula]="matriculaSeleccionada" 
+    (cerrar)="matriculaSeleccionada = null">
+  </app-matricula-detalle>
+</div>
+
+

@@ -1,0 +1,47 @@
+<div class="main-container">
+  <div style="display: flex; justify-content: space-between; align-items: flex-end;">
+    <div>
+      <h2 style="margin-bottom: 0.5rem;">Listado de Alumnos</h2>
+      <p style="color: var(--text-muted); margin-bottom: 2rem; font-weight: 500;">
+        Gestión y visualización de todos los estudiantes matriculados.
+      </p>
+    </div>
+    <button style="margin-bottom: 2rem; background: var(--primary); color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 12px; font-weight: 700; cursor: pointer; box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);">
+      + Añadir Alumno
+    </button>
+  </div>
+
+  <div class="table-card">
+    <table class="modern-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre del Alumno</th>
+          <th>iPasen</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+        @for (alumno of alumnos; track alumno.id) {
+          <tr (click)="seleccionar(alumno)" style="cursor: pointer;">
+            <td class="id-tag">#{{ alumno.id }}</td>
+            <td>
+              <div style="font-weight: 700; color: var(--text-main);">{{ alumno.nombre }}</div>
+              <div style="font-size: 0.85rem; color: var(--text-muted);">{{ alumno.apellidos }}</div>
+            </td>
+            <td>
+              <span class="badge-pill">{{ alumno.ipasen }}</span>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+
+  
+  <app-alumno-detalle 
+    [alumno]="alumnoSeleccionado" 
+    (cerrar)="alumnoSeleccionado = null">
+  </app-alumno-detalle>
+</div>
+
