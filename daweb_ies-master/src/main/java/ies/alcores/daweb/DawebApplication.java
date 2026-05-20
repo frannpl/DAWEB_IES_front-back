@@ -22,22 +22,31 @@ public class DawebApplication {
 				
 				if (host != null && path != null) {
 					String jdbcUrl = "jdbc:postgresql://" + host + (port != -1 ? ":" + port : ":5432") + path;
+					
+					// Set both env-like system properties and direct spring properties
 					System.setProperty("SPRING_DATASOURCE_URL", jdbcUrl);
+					System.setProperty("spring.datasource.url", jdbcUrl);
 					
 					if (userInfo != null && userInfo.contains(":")) {
 						String[] parts = userInfo.split(":", 2);
+						
 						System.setProperty("SPRING_DATASOURCE_USERNAME", parts[0]);
+						System.setProperty("spring.datasource.username", parts[0]);
+						
 						System.setProperty("SPRING_DATASOURCE_PASSWORD", parts[1]);
+						System.setProperty("spring.datasource.password", parts[1]);
 					}
 				}
 			} catch (Exception e) {
 				// Fallback to simple replace if parsing fails
 				String jdbcUrl = url.replaceFirst("postgresql://", "jdbc:postgresql://").replaceFirst("postgres://", "jdbc:postgresql://");
 				System.setProperty("SPRING_DATASOURCE_URL", jdbcUrl);
+				System.setProperty("spring.datasource.url", jdbcUrl);
 			}
 		}
 		SpringApplication.run(DawebApplication.class, args);
 	}
 
 }
+
 
