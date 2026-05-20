@@ -14,11 +14,16 @@ const app = express();
 const angularApp = new AngularNodeAppEngine();
 
 // Proxy configuration for backend API calls
-const backendUrl = process.env['BACKEND_URL'] || 'http://localhost:8080';
+const backendUrl = process.env['BACKEND_URL'];
+if (!backendUrl && process.env['NODE_ENV'] === 'production') {
+  throw new Error('BACKEND_URL environment variable is mandatory in production mode.');
+}
+const apiTarget = backendUrl || 'http://localhost:8080';
+
 app.use(
   '/api',
   createProxyMiddleware({
-    target: backendUrl,
+    target: apiTarget,
     changeOrigin: true,
     pathRewrite: {
       '^/api': '',
